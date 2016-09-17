@@ -65,9 +65,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
 
     func addMyPoint(press : UIGestureRecognizer) {
-        let locationOnView = press.location(in: self.mapView)
-        self.pressLocation = self.mapView.convert(locationOnView, toCoordinateFrom: self.mapView)
-        performSegue(withIdentifier: "choosePoke", sender: self)
+        if press.state == .began{
+            let locationOnView = press.location(in: self.mapView)
+            self.pressLocation = self.mapView.convert(locationOnView, toCoordinateFrom: self.mapView)
+            performSegue(withIdentifier: "choosePoke", sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

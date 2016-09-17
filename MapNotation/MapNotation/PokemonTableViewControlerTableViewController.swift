@@ -55,7 +55,7 @@ class PokemonTableViewControler: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate.pokemon(donePickingPokemon: self.pokemons[indexPath.row])
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController!.popToRootViewController(animated: true)
     }
     /*
     // Override to support conditional editing of the table view.

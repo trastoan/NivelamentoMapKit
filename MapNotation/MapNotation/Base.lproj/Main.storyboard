@@ -65,7 +65,7 @@
                     <navigationItem key="navigationItem" id="THF-LO-od6"/>
                     <connections>
                         <outlet property="mapView" destination="Tdy-CO-PJI" id="zHm-Xa-gSO"/>
-                        <segue destination="ot3-lF-dSO" kind="presentation" identifier="choosePoke" id="grd-ck-bMp"/>
+                        <segue destination="ot3-lF-dSO" kind="show" identifier="choosePoke" id="grd-ck-bMp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -82,7 +82,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pokeCell" rowHeight="64" id="aTt-PA-RbL" customClass="PokeTableViewCell" customModule="MapNotation" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="64"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aTt-PA-RbL" id="GAN-7E-ryB">
                                     <frame key="frameInset" width="375" height="63"/>
