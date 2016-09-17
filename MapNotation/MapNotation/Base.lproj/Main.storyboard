@@ -16,20 +16,10 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Tdy-CO-PJI"/>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fpo-jy-z48">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="Agz-Ki-nTZ"/>
-                                    <constraint firstAttribute="height" constant="50" id="QDd-JT-6j1"/>
-                                </constraints>
-                                <state key="normal" image="focus"/>
-                                <connections>
-                                    <action selector="zoomMyLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pkv-N7-ebk"/>
-                                </connections>
-                            </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="juH-w4-ZqU">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <segments>
@@ -47,18 +37,28 @@
                                     <action selector="selectMap:" destination="BYZ-38-t0r" eventType="valueChanged" id="3DX-Kt-dkt"/>
                                 </connections>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fpo-jy-z48">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="Agz-Ki-nTZ"/>
+                                    <constraint firstAttribute="height" constant="40" id="QDd-JT-6j1"/>
+                                </constraints>
+                                <state key="normal" image="focus"/>
+                                <connections>
+                                    <action selector="zoomMyLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pkv-N7-ebk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Tdy-CO-PJI" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="L7m-Af-hAT"/>
                             <constraint firstItem="Tdy-CO-PJI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Stk-Lz-q8t"/>
                             <constraint firstItem="Tdy-CO-PJI" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="X5V-fb-RsL"/>
-                            <constraint firstItem="Fpo-jy-z48" firstAttribute="leading" secondItem="Tdy-CO-PJI" secondAttribute="trailing" constant="-66" id="cnB-cL-I0T"/>
+                            <constraint firstItem="Fpo-jy-z48" firstAttribute="leading" secondItem="Tdy-CO-PJI" secondAttribute="trailing" constant="-56" id="cnB-cL-I0T"/>
                             <constraint firstItem="juH-w4-ZqU" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="14" id="dq2-QR-h2g"/>
                             <constraint firstItem="Tdy-CO-PJI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fOx-cE-Doj"/>
                             <constraint firstItem="juH-w4-ZqU" firstAttribute="leading" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="53" id="m2j-Kb-thQ"/>
                             <constraint firstItem="juH-w4-ZqU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sZJ-e2-4CE"/>
-                            <constraint firstItem="Fpo-jy-z48" firstAttribute="top" secondItem="Tdy-CO-PJI" secondAttribute="bottom" constant="-70" id="tUG-UG-PGx"/>
+                            <constraint firstItem="Fpo-jy-z48" firstAttribute="top" secondItem="Tdy-CO-PJI" secondAttribute="bottom" constant="-60" id="tUG-UG-PGx"/>
                             <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="juH-w4-ZqU" secondAttribute="trailing" constant="52" id="vy3-32-q3b"/>
                         </constraints>
                     </view>
@@ -68,7 +68,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="444.375" y="462.67605633802816"/>
+            <point key="canvasLocation" x="359" y="493"/>
         </scene>
     </scenes>
     <resources>
