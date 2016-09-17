@@ -64,6 +64,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         // Dispose of any resources that can be recreated.
     }
 
+    
+    //Function that recognizes the long press
     func addMyPoint(press : UIGestureRecognizer) {
         if press.state == .began{
             let locationOnView = press.location(in: self.mapView)
@@ -79,6 +81,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
         
     }
+    //Delegate that receives the pokemon and adds it to the map
     func pokemon(donePickingPokemon: String) {
         if let pressLocation = self.pressLocation{
             CLGeocoder().reverseGeocodeLocation(CLLocation(latitude:pressLocation.latitude, longitude: pressLocation.longitude), completionHandler: { (placemarks, error) in
@@ -104,13 +107,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             })
         }
     }
-    
-    @IBAction func pinMyLocation(_ sender: AnyObject) {
-        //Adds a pin to the center of the map
-//        let pin = MyPin(withTitle: "New pin", andLocationName: "Something Happening Here", andCoordinate: self.mapView.centerCoordinate)
-//        self.mapView.addAnnotation(pin)
-    }
-
     
     //Changes map style
     @IBAction func selectMap(_ sender: UISegmentedControl) {
@@ -168,6 +164,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 //        <#code#>
 //    }
 //    
+    //Clinton Implementa rotas nessa func
 //    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
 //        <#code#>
 //    }
