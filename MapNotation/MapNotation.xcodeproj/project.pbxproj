@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		085D854D1D8DDC8400B56FE8 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D854C1D8DDC8400B56FE8 /* LocationSearchTable.swift */; };
 		085D854F1D8DDE8100B56FE8 /* HandleMapSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D854E1D8DDE8100B56FE8 /* HandleMapSearchProtocol.swift */; };
+		DA2AFCA61D8E019E0018F6D2 /* PokeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2AFCA51D8E019E0018F6D2 /* PokeTableViewCell.swift */; };
+		DA2AFCA81D8E01F60018F6D2 /* PokemonTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2AFCA71D8E01F60018F6D2 /* PokemonTableViewController.swift */; };
 		DAF8FA691D88EF4B00B17CE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF8FA681D88EF4B00B17CE7 /* AppDelegate.swift */; };
 		DAF8FA6B1D88EF4B00B17CE7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF8FA6A1D88EF4B00B17CE7 /* ViewController.swift */; };
 		DAF8FA6E1D88EF4B00B17CE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF8FA6C1D88EF4B00B17CE7 /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 /* Begin PBXFileReference section */
 		085D854C1D8DDC8400B56FE8 /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		085D854E1D8DDE8100B56FE8 /* HandleMapSearchProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandleMapSearchProtocol.swift; sourceTree = "<group>"; };
+		DA2AFCA51D8E019E0018F6D2 /* PokeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokeTableViewCell.swift; sourceTree = "<group>"; };
+		DA2AFCA71D8E01F60018F6D2 /* PokemonTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonTableViewController.swift; sourceTree = "<group>"; };
 		DAF8FA651D88EF4B00B17CE7 /* MapNotation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapNotation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF8FA681D88EF4B00B17CE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAF8FA6A1D88EF4B00B17CE7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 				DAF8FA6F1D88EF4B00B17CE7 /* Assets.xcassets */,
 				DAF8FA711D88EF4B00B17CE7 /* LaunchScreen.storyboard */,
 				DAF8FA741D88EF4B00B17CE7 /* Info.plist */,
+				DA2AFCA51D8E019E0018F6D2 /* PokeTableViewCell.swift */,
+				DA2AFCA71D8E01F60018F6D2 /* PokemonTableViewController.swift */,
 			);
 			path = MapNotation;
 			sourceTree = "<group>";
@@ -146,11 +152,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA2AFCA61D8E019E0018F6D2 /* PokeTableViewCell.swift in Sources */,
 				DAF8FA6B1D88EF4B00B17CE7 /* ViewController.swift in Sources */,
 				DAF8FA691D88EF4B00B17CE7 /* AppDelegate.swift in Sources */,
 				DAF8FA7B1D88F3AF00B17CE7 /* MyPin.swift in Sources */,
 				085D854F1D8DDE8100B56FE8 /* HandleMapSearchProtocol.swift in Sources */,
 				085D854D1D8DDC8400B56FE8 /* LocationSearchTable.swift in Sources */,
+				DA2AFCA81D8E01F60018F6D2 /* PokemonTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

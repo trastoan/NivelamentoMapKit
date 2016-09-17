@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="HtV-bJ-W2r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="HtV-bJ-W2r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -16,7 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Tdy-CO-PJI">
@@ -72,6 +72,7 @@
                     <navigationItem key="navigationItem" id="3QF-HJ-ivb"/>
                     <connections>
                         <outlet property="mapView" destination="Tdy-CO-PJI" id="zHm-Xa-gSO"/>
+                        <segue destination="4Lb-Tg-AwU" kind="show" identifier="choosePoke" id="VFL-Q7-nIY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -121,6 +122,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vvK-fA-sd4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2379.375" y="478.52112676056339"/>
+        </scene>
+        <!--Pokemon Table View Controler-->
+        <scene sceneID="h3v-Yh-UgD">
+            <objects>
+                <tableViewController id="4Lb-Tg-AwU" customClass="PokemonTableViewControler" customModule="MapNotation" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" id="DkQ-Tt-lFa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pokeCell" rowHeight="66" id="y6C-qJ-lkh" customClass="PokeTableViewCell" customModule="MapNotation" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="66"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y6C-qJ-lkh" id="L37-2w-zBo">
+                                    <frame key="frameInset" width="320" height="65"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hLG-lV-MP6">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="oEj-Io-hT3"/>
+                                                <constraint firstAttribute="height" constant="50" id="tT8-g1-XkJ"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jw1-Bh-rxf">
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Jw1-Bh-rxf" secondAttribute="trailing" id="82E-fe-KTm"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="hLG-lV-MP6" secondAttribute="leading" id="HhG-ix-4S8"/>
+                                        <constraint firstItem="Jw1-Bh-rxf" firstAttribute="centerY" secondItem="L37-2w-zBo" secondAttribute="centerY" id="Mps-XY-eNe"/>
+                                        <constraint firstItem="hLG-lV-MP6" firstAttribute="centerY" secondItem="L37-2w-zBo" secondAttribute="centerY" id="OlL-zt-Nkc"/>
+                                        <constraint firstAttribute="topMargin" secondItem="hLG-lV-MP6" secondAttribute="top" id="uNL-ny-HaB"/>
+                                        <constraint firstItem="Jw1-Bh-rxf" firstAttribute="leading" secondItem="hLG-lV-MP6" secondAttribute="trailing" constant="8" id="yLe-cX-gX6"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="pokeImage" destination="hLG-lV-MP6" id="8eL-hx-KKD"/>
+                                    <outlet property="pokeName" destination="Jw1-Bh-rxf" id="jDc-XL-vSl"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4Lb-Tg-AwU" id="Wfj-a2-4H1"/>
+                            <outlet property="delegate" destination="4Lb-Tg-AwU" id="Xfx-4x-aEp"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h07-jt-sfP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3060" y="477.46478873239437"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9A1-1X-TXq">
