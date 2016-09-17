@@ -15,9 +15,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var myLocation : CLLocationCoordinate2D?
     let locationManager = CLLocationManager()
     
+    var resultSearchController: UISearchController? = nil
+    var selectedPin: MKPlacemark? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        creatingSearchBar()
         
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.addMyPoint))
         longGesture.minimumPressDuration = 1.5
@@ -163,3 +167,51 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
 }
 
+extension ViewController {
+    func creatingSearchBar() {
+        
+        //LocationSearchTable will appear when the searchBar init to search results
+        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as! LocationSearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        
+        //Initializate searchBar with SearchController
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search for Places"
+        navigationItem.titleView = resultSearchController?.searchBar
+        
+        //Change color Button Cancel from UISearchBar
+        let cancelButtonAttributes: NSDictionary = [NSForegroundColorAttributeName: UIColor.white]
+        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes as? [String : AnyObject], for: UIControlState.normal)
+        
+        //Settings for a cool apresentation
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        resultSearchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
+        
+        //Initializating things from LocationSearchTable
+        locationSearchTable.mapView = mapView
+        locationSearchTable.handleSearchDelegate = self
+    }
+}
+
+extension ViewController: HandleMapSearchProtocol {
+    func dropPinZoomIn(placemark: MKPlacemark){
+        //Cache the pin
+        selectedPin = placemark
+        //Clear existing pins
+        //mapView.removeAnnotations(mapView.annotations)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = placemark.coordinate
+        annotation.title = placemark.name
+        if let city = placemark.locality,
+            let state = placemark.administrativeArea {
+            annotation.subtitle = "\(city) \(state)"
+        }
+        mapView.addAnnotation(annotation)
+        //let span = MKCoordinateSpanMake(10, 10)
+        let region = MKCoordinateRegionMakeWithDistance(placemark.coordinate, 300, 300)//(placemark.coordinate, span)
+        mapView.setRegion(region, animated: true)
+    }
+}

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		085D854D1D8DDC8400B56FE8 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D854C1D8DDC8400B56FE8 /* LocationSearchTable.swift */; };
+		085D854F1D8DDE8100B56FE8 /* HandleMapSearchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085D854E1D8DDE8100B56FE8 /* HandleMapSearchProtocol.swift */; };
 		DAF8FA691D88EF4B00B17CE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF8FA681D88EF4B00B17CE7 /* AppDelegate.swift */; };
 		DAF8FA6B1D88EF4B00B17CE7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF8FA6A1D88EF4B00B17CE7 /* ViewController.swift */; };
 		DAF8FA6E1D88EF4B00B17CE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF8FA6C1D88EF4B00B17CE7 /* Main.storyboard */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		085D854C1D8DDC8400B56FE8 /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
+		085D854E1D8DDE8100B56FE8 /* HandleMapSearchProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandleMapSearchProtocol.swift; sourceTree = "<group>"; };
 		DAF8FA651D88EF4B00B17CE7 /* MapNotation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapNotation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF8FA681D88EF4B00B17CE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAF8FA6A1D88EF4B00B17CE7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +64,8 @@
 				DAF8FA6A1D88EF4B00B17CE7 /* ViewController.swift */,
 				DAF8FA7A1D88F3AF00B17CE7 /* MyPin.swift */,
 				DAF8FA6C1D88EF4B00B17CE7 /* Main.storyboard */,
+				085D854C1D8DDC8400B56FE8 /* LocationSearchTable.swift */,
+				085D854E1D8DDE8100B56FE8 /* HandleMapSearchProtocol.swift */,
 				DAF8FA6F1D88EF4B00B17CE7 /* Assets.xcassets */,
 				DAF8FA711D88EF4B00B17CE7 /* LaunchScreen.storyboard */,
 				DAF8FA741D88EF4B00B17CE7 /* Info.plist */,
@@ -99,7 +105,7 @@
 				TargetAttributes = {
 					DAF8FA641D88EF4B00B17CE7 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 489VWS49NR;
+						DevelopmentTeam = YY4FY5E467;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -143,6 +149,8 @@
 				DAF8FA6B1D88EF4B00B17CE7 /* ViewController.swift in Sources */,
 				DAF8FA691D88EF4B00B17CE7 /* AppDelegate.swift in Sources */,
 				DAF8FA7B1D88F3AF00B17CE7 /* MyPin.swift in Sources */,
+				085D854F1D8DDE8100B56FE8 /* HandleMapSearchProtocol.swift in Sources */,
+				085D854D1D8DDC8400B56FE8 /* LocationSearchTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,7 +270,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 489VWS49NR;
+				DEVELOPMENT_TEAM = YY4FY5E467;
 				INFOPLIST_FILE = MapNotation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ExpressU.MapNotation;
@@ -275,7 +283,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 489VWS49NR;
+				DEVELOPMENT_TEAM = YY4FY5E467;
 				INFOPLIST_FILE = MapNotation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ExpressU.MapNotation;
