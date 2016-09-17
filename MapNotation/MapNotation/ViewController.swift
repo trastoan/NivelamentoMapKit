@@ -9,11 +9,13 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, choosePokemonDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     var myLocation : CLLocationCoordinate2D?
     let locationManager = CLLocationManager()
+    var pokemon : PokemonTableViewControler!
+    var pressLocation : CLLocationCoordinate2D?
     
     var resultSearchController: UISearchController? = nil
     var selectedPin: MKPlacemark? = nil
@@ -24,7 +26,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         creatingSearchBar()
         
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.addMyPoint))
-        longGesture.minimumPressDuration = 1.5
+        longGesture.minimumPressDuration = 1.0
         
         self.mapView.addGestureRecognizer(longGesture)
         
@@ -71,37 +73,44 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     func addMyPoint(press : UIGestureRecognizer) {
         if press.state == .began{
             let locationOnView = press.location(in: self.mapView)
-            let newCoordinates = self.mapView.convert(locationOnView, toCoordinateFrom: self.mapView)
-            
-            CLGeocoder().reverseGeocodeLocation(CLLocation(latitude: newCoordinates.latitude, longitude: newCoordinates.longitude), completionHandler: { (placemarks, error) in
+            self.pressLocation = self.mapView.convert(locationOnView, toCoordinateFrom: self.mapView)
+            performSegue(withIdentifier: "choosePoke", sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "choosePoke"{
+            self.pokemon = segue.destination as! PokemonTableViewControler
+            self.pokemon.delegate = self
+        }
+        
+    }
+    
+    //Delegate that receives the pokemon and adds it to the map
+    func pokemon(donePickingPokemon: String) {
+        if let pressLocation = self.pressLocation{
+            CLGeocoder().reverseGeocodeLocation(CLLocation(latitude:pressLocation.latitude, longitude: pressLocation.longitude), completionHandler: { (placemarks, error) in
                 if error == nil{
                     if let placemark = placemarks?.first{
                         if let title = placemark.areasOfInterest?.first{
                             if placemark.thoroughfare != nil{
-                            let myPin = MyPin(withTitle: title, andLocationName: placemark.thoroughfare!, andCoordinate: newCoordinates, andAnnotationImage: UIImage(named: "poke")!)
+                                let myPin = MyPin(withTitle: title, andLocationName: placemark.thoroughfare!, andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
                                 self.mapView.addAnnotation(myPin)
                             }else{
-                                let myPin = MyPin(withTitle: title, andLocationName: "unknow address", andCoordinate: newCoordinates, andAnnotationImage: UIImage(named: "poke")!)
+                                let myPin = MyPin(withTitle: title, andLocationName: "unknow address", andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
                                 self.mapView.addAnnotation(myPin)
                             }
                         }else if let title = placemark.thoroughfare{
-                            let myPin = MyPin(withTitle: "myLocation", andLocationName: title, andCoordinate: newCoordinates, andAnnotationImage: UIImage(named: "poke")!)
+                            let myPin = MyPin(withTitle: "myLocation", andLocationName: title, andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
                             self.mapView.addAnnotation(myPin)
                         }else{
-                            let myPin = MyPin(withTitle: "myLocation", andLocationName: "unknowLocation", andCoordinate: newCoordinates, andAnnotationImage: UIImage(named: "poke")!)
+                            let myPin = MyPin(withTitle: "myLocation", andLocationName: "unknowLocation", andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
                             self.mapView.addAnnotation(myPin)
                         }
                     }
                 }
             })
-            
         }
-    }
-    
-    @IBAction func pinMyLocation(_ sender: AnyObject) {
-        //Adds a pin to the center of the map
-//        let pin = MyPin(withTitle: "New pin", andLocationName: "Something Happening Here", andCoordinate: self.mapView.centerCoordinate)
-//        self.mapView.addAnnotation(pin)
     }
 
     
