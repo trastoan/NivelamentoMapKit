@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MapNotation" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Tdy-CO-PJI"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fpo-jy-z48">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Agz-Ki-nTZ"/>
+                                    <constraint firstAttribute="height" constant="50" id="QDd-JT-6j1"/>
+                                </constraints>
+                                <state key="normal" image="focus"/>
+                                <connections>
+                                    <action selector="zoomMyLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pkv-N7-ebk"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="juH-w4-ZqU">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <segments>
+                                    <segment title="Standard"/>
+                                    <segment title="Sattelite"/>
+                                    <segment title="Hybrid"/>
+                                </segments>
+                                <color key="tintColor" red="0.29411764709999999" green="0.27450980390000002" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="selectMap:" destination="BYZ-38-t0r" eventType="valueChanged" id="3DX-Kt-dkt"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Tdy-CO-PJI" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="L7m-Af-hAT"/>
+                            <constraint firstItem="Tdy-CO-PJI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Stk-Lz-q8t"/>
+                            <constraint firstItem="Tdy-CO-PJI" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="X5V-fb-RsL"/>
+                            <constraint firstItem="Fpo-jy-z48" firstAttribute="leading" secondItem="Tdy-CO-PJI" secondAttribute="trailing" constant="-66" id="cnB-cL-I0T"/>
+                            <constraint firstItem="juH-w4-ZqU" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="14" id="dq2-QR-h2g"/>
+                            <constraint firstItem="Tdy-CO-PJI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fOx-cE-Doj"/>
+                            <constraint firstItem="juH-w4-ZqU" firstAttribute="leading" relation="lessThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="53" id="m2j-Kb-thQ"/>
+                            <constraint firstItem="juH-w4-ZqU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sZJ-e2-4CE"/>
+                            <constraint firstItem="Fpo-jy-z48" firstAttribute="top" secondItem="Tdy-CO-PJI" secondAttribute="bottom" constant="-70" id="tUG-UG-PGx"/>
+                            <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="juH-w4-ZqU" secondAttribute="trailing" constant="52" id="vy3-32-q3b"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="Tdy-CO-PJI" id="zHm-Xa-gSO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="444.375" y="462.67605633802816"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="focus" width="96" height="96"/>
+    </resources>
+</document>
