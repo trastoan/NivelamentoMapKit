@@ -104,19 +104,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             CLGeocoder().reverseGeocodeLocation(CLLocation(latitude:pressLocation.latitude, longitude: pressLocation.longitude), completionHandler: { (placemarks, error) in
                 if error == nil{
                     if let placemark = placemarks?.first{
-                        if let title = placemark.areasOfInterest?.first{
+                        if let _ = placemark.areasOfInterest?.first{
                             if placemark.thoroughfare != nil{
-                                let myPin = MyPin(withTitle: title, andLocationName: placemark.thoroughfare!, andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
+                                let myPin = MyPin(withTitle: donePickingPokemon.capitalized, andLocationName: placemark.thoroughfare!, andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
                                 self.mapView.addAnnotation(myPin)
                             }else{
-                                let myPin = MyPin(withTitle: title, andLocationName: "unknow address", andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
+                                let myPin = MyPin(withTitle: donePickingPokemon.capitalized, andLocationName: "unknow address", andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
                                 self.mapView.addAnnotation(myPin)
                             }
                         }else if let title = placemark.thoroughfare{
-                            let myPin = MyPin(withTitle: "myLocation", andLocationName: title, andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
+                            let myPin = MyPin(withTitle: donePickingPokemon.capitalized, andLocationName: title, andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
                             self.mapView.addAnnotation(myPin)
                         }else{
-                            let myPin = MyPin(withTitle: "myLocation", andLocationName: "unknowLocation", andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
+                            let myPin = MyPin(withTitle: donePickingPokemon.capitalized, andLocationName: "unknowLocation", andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
                             self.mapView.addAnnotation(myPin)
                         }
                     }
