@@ -11,8 +11,10 @@ import MapKit
 
 class LocationSearchTable: UITableViewController {
     var mapItems: [MKMapItem] = []
-    var mapView: MKMapView? = nil
-    var handleSearchDelegate: HandleMapSearchProtocol? = nil
+    var mapView: MKMapView?
+    var handleSearchDelegate: HandleMapSearchProtocol?
+    let locationSection: [String] = ["Pokémon", "Location"]
+    var pokemonItems: [MKAnnotation] = []
 }
 
 extension LocationSearchTable: UISearchResultsUpdating {
@@ -30,7 +32,7 @@ extension LocationSearchTable: UISearchResultsUpdating {
             if error != nil {
                 print("Não Encontrado")
             } else {
-                self.mapItems = []
+                self.mapItems.removeAll()
                 for item in (response?.mapItems)! {
                     self.mapItems.append(item)
                     print("\nItem name = \((item.name)!)")
@@ -48,26 +50,77 @@ extension LocationSearchTable: UISearchResultsUpdating {
         //Search through the request and getting a response from MKLocalCompletionHandler
         let search = MKLocalSearch(request: request)
         search.start(completionHandler: completionHandler)
+        
+        pokemonItems.removeAll()
+        for pokemon in mapView.annotations {
+            if (pokemon.title??.contains(searchBarText))!{
+                pokemonItems.append(pokemon)
+            }
+        }
     }
 }
 
 extension LocationSearchTable {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedItem = self.mapItems[indexPath.row].placemark
-        handleSearchDelegate?.dropPinZoomIn(placemark: selectedItem)
+        
+        if indexPath.section == 1 {
+            let selectedItem = self.mapItems[indexPath.row].placemark
+            handleSearchDelegate?.dropPinZoomIn(placemark: selectedItem)
+        } else if indexPath.section == 0 {
+            let selectedItem = pokemonItems[indexPath.row]
+            handleSearchDelegate?.zoomIn(coordinate: selectedItem.coordinate)
+        }
         dismiss(animated: true, completion: nil)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mapItems.count
+        var rowsMap = mapItems.count
+        var rowsPokemon = pokemonItems.count
+        
+        if mapItems.count == 0 {
+            rowsMap = 1
+        }
+        if pokemonItems.count == 0 {
+            rowsPokemon = 1
+        }
+        
+        return (section == 1) ? rowsMap : rowsPokemon
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        let selectedItem = self.mapItems[indexPath.row].placemark
-        cell.textLabel?.text = selectedItem.name
-        cell.detailTextLabel?.text = parseAddress(selectedItem: selectedItem)
+        
+        if indexPath.section == 1 {
+            if self.mapItems.count == 0 {
+                cell.textLabel?.text = "Not Found"
+                cell.detailTextLabel?.text = "Not Found"
+            } else {
+                let selectedItem = self.mapItems[indexPath.row].placemark
+                cell.textLabel?.text = selectedItem.name
+                cell.detailTextLabel?.text = parseAddress(selectedItem: selectedItem)
+            }
+        } else if indexPath.section == 0{
+            if self.pokemonItems.count == 0 {
+                cell.textLabel?.text = "Not Found"
+                cell.detailTextLabel?.text = "Not Found"
+            } else {
+                let selectedItem = pokemonItems[indexPath.row]
+                cell.textLabel?.text = (selectedItem.title)!
+                cell.detailTextLabel?.text = (selectedItem.subtitle)!
+            }
+        }
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        return (section == 0) ? locationSection.first : locationSection.last
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return locationSection.count
     }
 }
 
