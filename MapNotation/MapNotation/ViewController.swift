@@ -12,6 +12,7 @@ import MapKit
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, choosePokemonDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
+    
     var myLocation : CLLocationCoordinate2D?
     let locationManager = CLLocationManager()
     var pokemon : PokemonTableViewControler!
@@ -20,6 +21,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var resultSearchController: UISearchController?
     var selectedPin: MKPlacemark?
     var allPokemon: [MKAnnotation] = []
+    
+    var mapItem: (map: MKMapItem, pin: MyPin)? = nil
+    
+    var gesture: UIGestureRecognizer? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +47,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
     }
     
+ 
     func checkLocalizationPermission() {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
@@ -84,33 +90,40 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             self.pokemon.delegate = self
         }
         
+        if segue.identifier == "showRoute" {
+            let destination = segue.destination as! RouteViewController
+            destination.mapItem = self.mapItem
+        }
+        
     }
     
     //Delegate that receives the pokemon and adds it to the map
     func pokemon(donePickingPokemon: String) {
-        if let pressLocation = self.pressLocation{
+        if let pressLocation = self.pressLocation {
+    
             CLGeocoder().reverseGeocodeLocation(CLLocation(latitude:pressLocation.latitude, longitude: pressLocation.longitude), completionHandler: { (placemarks, error) in
                 if error == nil{
                     if let placemark = placemarks?.first{
-                        if let title = placemark.areasOfInterest?.first{
+                        if let _ = placemark.areasOfInterest?.first{
                             if placemark.thoroughfare != nil{
-                                let myPin = MyPin(withTitle: donePickingPokemon, andLocationName: placemark.thoroughfare!, andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
+                                let myPin = MyPin(withTitle: donePickingPokemon.capitalized, andLocationName: placemark.thoroughfare!, andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
                                 self.mapView.addAnnotation(myPin)
                             }else{
-                                let myPin = MyPin(withTitle: donePickingPokemon, andLocationName: "unknow address", andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
+                                let myPin = MyPin(withTitle: donePickingPokemon.capitalized, andLocationName: "unknow address", andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
                                 self.mapView.addAnnotation(myPin)
                             }
                         }else if let title = placemark.thoroughfare{
-                            let myPin = MyPin(withTitle: donePickingPokemon, andLocationName: title, andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
+                            let myPin = MyPin(withTitle: donePickingPokemon.capitalized, andLocationName: title, andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
                             self.mapView.addAnnotation(myPin)
                         }else{
-                            let myPin = MyPin(withTitle: donePickingPokemon, andLocationName: "unknowLocation", andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
+                            let myPin = MyPin(withTitle: donePickingPokemon.capitalized, andLocationName: "unknowLocation", andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
                             self.mapView.addAnnotation(myPin)
                         }
                     }
-                    print(self.mapView.annotations)
+                    
                 }
             })
+            
         }
     }
 
@@ -161,19 +174,38 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     //adding custom Annotation
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let customAnnotation = annotation as? MyPin{
+            /*let placemark = MKPlacemark(coordinate: annotation.coordinate, addressDictionary: nil)
+            let mapItem = MKMapItem(placemark: placemark)
+            
+            self.mapItem = (mapItem, customAnnotation)
+            self.showRoute.isEnabled = true*/
+            
             return customAnnotation.annotationView!
         }else{
             return nil
         }
     }
-//
-//    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-//        <#code#>
-//    }
-//    
-//    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-//        <#code#>
-//    }
+    
+    func buttonAction() {
+        self.performSegue(withIdentifier: "showRoute", sender: nil)
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let customAnnotation = view.annotation as? MyPin{
+            let placemark = MKPlacemark(coordinate: (view.annotation?.coordinate)!, addressDictionary: nil)
+            let mapItem = MKMapItem(placemark: placemark)
+            
+            self.gesture = UITapGestureRecognizer(target: self, action: #selector(self.buttonAction))
+            view.addGestureRecognizer(self.gesture!)
+            
+            self.mapItem = (mapItem, customAnnotation)
+            
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        view.removeGestureRecognizer(self.gesture!)
+    }
     
 }
 
@@ -219,7 +251,7 @@ extension ViewController: HandleMapSearchProtocol {
             let state = placemark.administrativeArea {
             annotation.subtitle = "\(city) \(state)"
         }
-        mapView.addAnnotation(annotation)
+        //mapView.addAnnotation(annotation)
         //let span = MKCoordinateSpanMake(10, 10)
         let region = MKCoordinateRegionMakeWithDistance(placemark.coordinate, 300, 300)//(placemark.coordinate, span)
         mapView.setRegion(region, animated: true)
