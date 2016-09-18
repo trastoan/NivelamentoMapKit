@@ -26,7 +26,7 @@
 		BBE932431D8ED6610096078D /* RouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteViewController.swift; sourceTree = "<group>"; };
 		DA2AFCA51D8E019E0018F6D2 /* PokeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokeTableViewCell.swift; sourceTree = "<group>"; };
 		DA2AFCA71D8E01F60018F6D2 /* PokemonTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonTableViewController.swift; sourceTree = "<group>"; };
-		DAF8FA651D88EF4B00B17CE7 /* PokeMapKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeMapKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAF8FA651D88EF4B00B17CE7 /* MapNotation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapNotation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF8FA681D88EF4B00B17CE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAF8FA6A1D88EF4B00B17CE7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DAF8FA6D1D88EF4B00B17CE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 		DAF8FA661D88EF4B00B17CE7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DAF8FA651D88EF4B00B17CE7 /* PokeMapKit.app */,
+				DAF8FA651D88EF4B00B17CE7 /* MapNotation.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -85,9 +85,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DAF8FA641D88EF4B00B17CE7 /* PokeMapKit */ = {
+		DAF8FA641D88EF4B00B17CE7 /* MapNotation */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DAF8FA771D88EF4B00B17CE7 /* Build configuration list for PBXNativeTarget "PokeMapKit" */;
+			buildConfigurationList = DAF8FA771D88EF4B00B17CE7 /* Build configuration list for PBXNativeTarget "MapNotation" */;
 			buildPhases = (
 				DAF8FA611D88EF4B00B17CE7 /* Sources */,
 				DAF8FA621D88EF4B00B17CE7 /* Frameworks */,
@@ -97,9 +97,9 @@
 			);
 			dependencies = (
 			);
-			name = PokeMapKit;
+			name = MapNotation;
 			productName = MapNotation;
-			productReference = DAF8FA651D88EF4B00B17CE7 /* PokeMapKit.app */;
+			productReference = DAF8FA651D88EF4B00B17CE7 /* MapNotation.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -119,7 +119,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DAF8FA601D88EF4B00B17CE7 /* Build configuration list for PBXProject "PokeMapKit" */;
+			buildConfigurationList = DAF8FA601D88EF4B00B17CE7 /* Build configuration list for PBXProject "MapNotation" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -132,7 +132,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DAF8FA641D88EF4B00B17CE7 /* PokeMapKit */,
+				DAF8FA641D88EF4B00B17CE7 /* MapNotation */,
 			);
 		};
 /* End PBXProject section */
@@ -307,7 +307,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DAF8FA601D88EF4B00B17CE7 /* Build configuration list for PBXProject "PokeMapKit" */ = {
+		DAF8FA601D88EF4B00B17CE7 /* Build configuration list for PBXProject "MapNotation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DAF8FA751D88EF4B00B17CE7 /* Debug */,
@@ -316,7 +316,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DAF8FA771D88EF4B00B17CE7 /* Build configuration list for PBXNativeTarget "PokeMapKit" */ = {
+		DAF8FA771D88EF4B00B17CE7 /* Build configuration list for PBXNativeTarget "MapNotation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DAF8FA781D88EF4B00B17CE7 /* Debug */,

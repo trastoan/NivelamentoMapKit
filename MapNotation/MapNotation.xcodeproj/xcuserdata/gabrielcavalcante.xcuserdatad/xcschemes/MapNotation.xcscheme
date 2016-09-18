@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DAF8FA641D88EF4B00B17CE7"
-               BuildableName = "PokeMapKit.app"
-               BlueprintName = "PokeMapKit"
-               ReferencedContainer = "container:PokeMapKit.xcodeproj">
+               BuildableName = "MapNotation.app"
+               BlueprintName = "MapNotation"
+               ReferencedContainer = "container:MapNotation.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DAF8FA641D88EF4B00B17CE7"
-            BuildableName = "PokeMapKit.app"
-            BlueprintName = "PokeMapKit"
-            ReferencedContainer = "container:PokeMapKit.xcodeproj">
+            BuildableName = "MapNotation.app"
+            BlueprintName = "MapNotation"
+            ReferencedContainer = "container:MapNotation.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DAF8FA641D88EF4B00B17CE7"
-            BuildableName = "PokeMapKit.app"
-            BlueprintName = "PokeMapKit"
-            ReferencedContainer = "container:PokeMapKit.xcodeproj">
+            BuildableName = "MapNotation.app"
+            BlueprintName = "MapNotation"
+            ReferencedContainer = "container:MapNotation.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DAF8FA641D88EF4B00B17CE7"
-            BuildableName = "PokeMapKit.app"
-            BlueprintName = "PokeMapKit"
-            ReferencedContainer = "container:PokeMapKit.xcodeproj">
+            BuildableName = "MapNotation.app"
+            BlueprintName = "MapNotation"
+            ReferencedContainer = "container:MapNotation.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
