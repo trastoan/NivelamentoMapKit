@@ -114,7 +114,6 @@
 				TargetAttributes = {
 					DAF8FA641D88EF4B00B17CE7 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = YY4FY5E467;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -282,7 +281,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = YY4FY5E467;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MapNotation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ExpressU.MapNotation;
@@ -295,7 +294,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = YY4FY5E467;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MapNotation/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ExpressU.MapNotation;

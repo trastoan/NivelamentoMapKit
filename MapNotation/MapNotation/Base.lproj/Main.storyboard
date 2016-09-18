@@ -69,17 +69,9 @@
                             <constraint firstItem="Fpo-jy-z48" firstAttribute="top" secondItem="Tdy-CO-PJI" secondAttribute="bottom" constant="-59" id="uo9-g9-Si6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="3QF-HJ-ivb">
-                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="LAJ-hp-7AT">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="showRouteViewController:" destination="BYZ-38-t0r" id="45O-ik-WVl"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="3QF-HJ-ivb"/>
                     <connections>
                         <outlet property="mapView" destination="Tdy-CO-PJI" id="zHm-Xa-gSO"/>
-                        <outlet property="showRoute" destination="LAJ-hp-7AT" id="Ng2-1S-kSw"/>
                         <segue destination="4Lb-Tg-AwU" kind="show" identifier="choosePoke" id="VFL-Q7-nIY"/>
                         <segue destination="KeX-vH-6du" kind="show" identifier="showRoute" id="xPh-3e-slc"/>
                     </connections>

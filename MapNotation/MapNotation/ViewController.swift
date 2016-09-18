@@ -12,7 +12,6 @@ import MapKit
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, choosePokemonDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var showRoute: UIBarButtonItem!
     
     var myLocation : CLLocationCoordinate2D?
     let locationManager = CLLocationManager()
@@ -23,6 +22,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var selectedPin: MKPlacemark? = nil
     
     var mapItem: (map: MKMapItem, pin: MyPin)? = nil
+    
+    var gesture: UIGestureRecognizer? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,13 +45,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
             locationManager.requestLocation()
             self.mapView.showsUserLocation = true
         }
-        
-        self.showRoute.isEnabled = false
     }
     
-    @IBAction func showRouteViewController(_ sender: AnyObject) {
-        self.performSegue(withIdentifier: "showRoute", sender: nil)
-    }
  
     func checkLocalizationPermission() {
         switch CLLocationManager.authorizationStatus() {
@@ -190,19 +186,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
     }
     
+    func buttonAction() {
+        self.performSegue(withIdentifier: "showRoute", sender: nil)
+    }
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let customAnnotation = view.annotation as? MyPin{
             let placemark = MKPlacemark(coordinate: (view.annotation?.coordinate)!, addressDictionary: nil)
             let mapItem = MKMapItem(placemark: placemark)
             
+            self.gesture = UITapGestureRecognizer(target: self, action: #selector(self.buttonAction))
+            view.addGestureRecognizer(self.gesture!)
+            
             self.mapItem = (mapItem, customAnnotation)
-            self.showRoute.isEnabled = true
             
         }
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        self.showRoute.isEnabled = false
+        view.removeGestureRecognizer(self.gesture!)
     }
     
 }
