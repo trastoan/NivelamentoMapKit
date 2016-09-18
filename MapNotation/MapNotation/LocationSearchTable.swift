@@ -24,39 +24,20 @@ extension LocationSearchTable: UISearchResultsUpdating {
         guard let mapView = mapView, let searchBarText = searchController.searchBar.text else { return }
         
         //Request for MapKit with string from searchBar with a languege and region(at this case is the mapView)
-        let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = searchBarText
-        request.region = mapView.region
         
-        let completionHandler: MKLocalSearchCompletionHandler = {response, error in
-            if error != nil {
-                print("Não Encontrado")
-            } else {
-                self.mapItems.removeAll()
-                for item in (response?.mapItems)! {
-                    self.mapItems.append(item)
-                    print("\nItem name = \((item.name)!)")
-                    print("Latitude = \((item.placemark.location?.coordinate.latitude)!)")
-                    print("Longitude = \((item.placemark.location?.coordinate.longitude)!)")
-                    print("Street Number = \(item.placemark.subThoroughfare)")
-                    print("Street Name = \(item.placemark.thoroughfare)")
-                    print("City = \(item.placemark.locality)")
-                    print("Area = \(item.placemark.administrativeArea)")
-                }
-                self.tableView.reloadData()
-            }
-        }
+        
+        
         
         //Search through the request and getting a response from MKLocalCompletionHandler
-        let search = MKLocalSearch(request: request)
-        search.start(completionHandler: completionHandler)
         
-        pokemonItems.removeAll()
-        for pokemon in mapView.annotations {
-            if (pokemon.title??.contains(searchBarText))!{
-                pokemonItems.append(pokemon)
-            }
-        }
+        
+        
+        
+        //Complete the pokemonItems with MapView Annotations
+        
+        
+        
+        
     }
 }
 
@@ -64,11 +45,17 @@ extension LocationSearchTable {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.section == 1 {
-            let selectedItem = self.mapItems[indexPath.row].placemark
-            handleSearchDelegate?.dropPinZoomIn(placemark: selectedItem)
+            //Make a selectedItem from mapItems and handle it
+            
+            
+            
+            
         } else if indexPath.section == 0 {
-            let selectedItem = pokemonItems[indexPath.row]
-            handleSearchDelegate?.zoomIn(coordinate: selectedItem.coordinate)
+            //Make a selectedItem from pokemonItems and handle it
+            
+            
+            
+            
         }
         dismiss(animated: true, completion: nil)
     }
@@ -96,18 +83,22 @@ extension LocationSearchTable {
                 cell.textLabel?.text = "Not Found"
                 cell.detailTextLabel?.text = "Not Found"
             } else {
-                let selectedItem = self.mapItems[indexPath.row].placemark
-                cell.textLabel?.text = selectedItem.name
-                cell.detailTextLabel?.text = parseAddress(selectedItem: selectedItem)
+                //Fill the cell with places from mapItems
+                
+                
+                
+                
             }
         } else if indexPath.section == 0{
             if self.pokemonItems.count == 0 {
                 cell.textLabel?.text = "Not Found"
                 cell.detailTextLabel?.text = "Not Found"
             } else {
-                let selectedItem = pokemonItems[indexPath.row]
-                cell.textLabel?.text = (selectedItem.title)!
-                cell.detailTextLabel?.text = (selectedItem.subtitle)!
+                //Fill the cell with pokemon from pokemonItems
+                
+                
+                
+                
             }
         }
         
@@ -125,25 +116,35 @@ extension LocationSearchTable {
 }
 
 extension LocationSearchTable {
+    //You will need this function to organize the subtitle from location cell
+    
     func parseAddress(selectedItem:MKPlacemark) -> String {
         // put a space between "4" and "Melrose Place"
         let firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? " " : ""
+        
         // put a comma between street and city/state
         let comma = (selectedItem.subThoroughfare != nil || selectedItem.thoroughfare != nil) && (selectedItem.subAdministrativeArea != nil || selectedItem.administrativeArea != nil) ? ", " : ""
+        
         // put a space between "Washington" and "DC"
         let secondSpace = (selectedItem.subAdministrativeArea != nil && selectedItem.administrativeArea != nil) ? " " : " "
+        
         let addressLine = String(
+            
             format:"%@%@%@%@%@%@%@",
-            // street number
+        
+        // street number
             selectedItem.subThoroughfare ?? "",
             firstSpace,
-            // street name
+        
+        // street name
             selectedItem.thoroughfare ?? "",
             comma,
-            // city
+        
+        // city
             selectedItem.locality ?? "",
             secondSpace,
-            // state
+        
+        // state
             selectedItem.administrativeArea ?? ""
         )
         return addressLine

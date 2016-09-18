@@ -11,6 +11,5 @@ import MapKit
 
 //This protocol was created for the comunication between LocationSearchTable and ViewController
 protocol HandleMapSearchProtocol {
-    func dropPinZoomIn(placemark: MKPlacemark)
     func zoomIn(coordinate: CLLocationCoordinate2D)
 }

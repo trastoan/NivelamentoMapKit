@@ -220,7 +220,7 @@ extension ViewController {
         //Initializate searchBar with SearchController
         let searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
-        searchBar.placeholder = "Search for Places"
+        searchBar.placeholder = "Search for Pokémon or Places"
         navigationItem.titleView = resultSearchController?.searchBar
         
         //Change color Button Cancel from UISearchBar
@@ -239,26 +239,11 @@ extension ViewController {
 }
 
 extension ViewController: HandleMapSearchProtocol {
-    func dropPinZoomIn(placemark: MKPlacemark){
-        //Cache the pin
-        selectedPin = placemark
-        //Clear existing pins
-        //mapView.removeAnnotations(mapView.annotations)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = placemark.coordinate
-        annotation.title = placemark.name
-        if let city = placemark.locality,
-            let state = placemark.administrativeArea {
-            annotation.subtitle = "\(city) \(state)"
-        }
-        //mapView.addAnnotation(annotation)
-        //let span = MKCoordinateSpanMake(10, 10)
-        let region = MKCoordinateRegionMakeWithDistance(placemark.coordinate, 300, 300)//(placemark.coordinate, span)
-        mapView.setRegion(region, animated: true)
-    }
-    
     func zoomIn(coordinate: CLLocationCoordinate2D){
-        let region = MKCoordinateRegionMakeWithDistance(coordinate, 300, 300)
-        mapView.setRegion(region, animated: true)
+        //To work with zoom you need to make a region
+        
+        
+        
+        
     }
 }
