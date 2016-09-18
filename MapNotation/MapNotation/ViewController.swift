@@ -17,12 +17,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     var pokemon : PokemonTableViewControler!
     var pressLocation : CLLocationCoordinate2D?
     
-    var resultSearchController: UISearchController? = nil
-    var selectedPin: MKPlacemark? = nil
+    var resultSearchController: UISearchController?
+    var selectedPin: MKPlacemark?
+    var allPokemon: [MKAnnotation] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         creatingSearchBar()
         
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.addMyPoint))
@@ -94,20 +94,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
                     if let placemark = placemarks?.first{
                         if let title = placemark.areasOfInterest?.first{
                             if placemark.thoroughfare != nil{
-                                let myPin = MyPin(withTitle: title, andLocationName: placemark.thoroughfare!, andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
+                                let myPin = MyPin(withTitle: donePickingPokemon, andLocationName: placemark.thoroughfare!, andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
                                 self.mapView.addAnnotation(myPin)
                             }else{
-                                let myPin = MyPin(withTitle: title, andLocationName: "unknow address", andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
+                                let myPin = MyPin(withTitle: donePickingPokemon, andLocationName: "unknow address", andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
                                 self.mapView.addAnnotation(myPin)
                             }
                         }else if let title = placemark.thoroughfare{
-                            let myPin = MyPin(withTitle: "myLocation", andLocationName: title, andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
+                            let myPin = MyPin(withTitle: donePickingPokemon, andLocationName: title, andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
                             self.mapView.addAnnotation(myPin)
                         }else{
-                            let myPin = MyPin(withTitle: "myLocation", andLocationName: "unknowLocation", andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
+                            let myPin = MyPin(withTitle: donePickingPokemon, andLocationName: "unknowLocation", andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
                             self.mapView.addAnnotation(myPin)
                         }
                     }
+                    print(self.mapView.annotations)
                 }
             })
         }
@@ -221,6 +222,11 @@ extension ViewController: HandleMapSearchProtocol {
         mapView.addAnnotation(annotation)
         //let span = MKCoordinateSpanMake(10, 10)
         let region = MKCoordinateRegionMakeWithDistance(placemark.coordinate, 300, 300)//(placemark.coordinate, span)
+        mapView.setRegion(region, animated: true)
+    }
+    
+    func zoomIn(coordinate: CLLocationCoordinate2D){
+        let region = MKCoordinateRegionMakeWithDistance(coordinate, 300, 300)
         mapView.setRegion(region, animated: true)
     }
 }

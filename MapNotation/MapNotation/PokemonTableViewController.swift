@@ -16,7 +16,7 @@ class PokemonTableViewControler: UITableViewController {
     
     var delegate : choosePokemonDelegate!
     
-    let pokemons : [String] = ["abra","pikachu","snorlax", "pidgey", "venonat", "caterpie", "charmander","dratini", "weedle", "psyduck", "bellsprout", "mew", "meowth", "mankey", "bullbasaur", "staryu", "squirtle", "eevee", "zubat", "rattata", "jigglypuff"].sorted()
+    let pokemons : [String] = ["Abra","Pikachu","Snorlax", "Pidgey", "Venonat", "Caterpie", "Charmander","Dratini", "Weedle", "Psyduck", "Bellsprout", "Mew", "Meowth", "Mankey", "Bullbasaur", "Staryu", "Squirtle", "Eevee", "Zubat", "Rattata", "Jigglypuff"].sorted()
     
     override func viewDidLoad() {
         super.viewDidLoad()
