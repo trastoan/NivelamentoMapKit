@@ -220,7 +220,7 @@ extension ViewController {
         //Initializate searchBar with SearchController
         let searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
-        searchBar.placeholder = "Search for Places"
+        searchBar.placeholder = "Search for Pokémon or Places"
         navigationItem.titleView = resultSearchController?.searchBar
         
         //Change color Button Cancel from UISearchBar
