@@ -6,6 +6,9 @@
 //  Copyright © 2016 Yuri Saboia Felix Frota. All rights reserved.
 //
 
+// You don't need to change anything here, so please don't, focus on the other things
+
+
 import UIKit
 
 protocol choosePokemonDelegate : class {

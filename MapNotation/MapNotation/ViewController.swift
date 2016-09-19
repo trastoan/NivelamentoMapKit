@@ -13,9 +13,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
     @IBOutlet weak var mapView: MKMapView!
     
+    //User initial location
     var myLocation : CLLocationCoordinate2D?
     let locationManager = CLLocationManager()
+    
+    //Needed for the delegate
     var pokemon : PokemonTableViewControler!
+    
+    //Location pressed by the user
     var pressLocation : CLLocationCoordinate2D?
     
     var resultSearchController: UISearchController?
@@ -30,14 +35,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         super.viewDidLoad()
         creatingSearchBar()
         
+        //Adding long press gesture
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.addMyPoint))
         longGesture.minimumPressDuration = 1.0
-        
         self.mapView.addGestureRecognizer(longGesture)
         
+        //Setting mapView and Location Manager Delegates
         self.locationManager.delegate = self
         self.mapView.delegate = self
         
+        
+        //Requesting user location authorization
         self.locationManager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled() {
@@ -47,30 +55,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         }
     }
     
- 
-    func checkLocalizationPermission() {
-        switch CLLocationManager.authorizationStatus() {
-        case .authorizedWhenInUse:
-            print("Autorizado em uso")
-        case .authorizedAlways:
-            print("Autorizado Sempre")
-        case .denied:
-            print("Negado")
-        case .notDetermined:
-            self.locationManager.requestWhenInUseAuthorization()
-            print("Não determinado")
-        case .restricted:
-            print("Restrito")
-        }
-    }
-    
-    func createAlert(_ text : String,andTitle title: String) {
-        let alert = UIAlertController(title: title, message: text, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -78,12 +62,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 
     func addMyPoint(press : UIGestureRecognizer) {
         if press.state == .began{
-            let locationOnView = press.location(in: self.mapView)
-            self.pressLocation = self.mapView.convert(locationOnView, toCoordinateFrom: self.mapView)
+            //Get the coordinate where the user pressed than performa segue
             performSegue(withIdentifier: "choosePoke", sender: self)
         }
     }
     
+    //You will probably not need to change that
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "choosePoke"{
             self.pokemon = segue.destination as! PokemonTableViewControler
@@ -102,26 +86,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         if let pressLocation = self.pressLocation {
     
             CLGeocoder().reverseGeocodeLocation(CLLocation(latitude:pressLocation.latitude, longitude: pressLocation.longitude), completionHandler: { (placemarks, error) in
-                if error == nil{
-                    if let placemark = placemarks?.first{
-                        if let _ = placemark.areasOfInterest?.first{
-                            if placemark.thoroughfare != nil{
-                                let myPin = MyPin(withTitle: donePickingPokemon.capitalized, andLocationName: placemark.thoroughfare!, andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
-                                self.mapView.addAnnotation(myPin)
-                            }else{
-                                let myPin = MyPin(withTitle: donePickingPokemon.capitalized, andLocationName: "unknow address", andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
-                                self.mapView.addAnnotation(myPin)
-                            }
-                        }else if let title = placemark.thoroughfare{
-                            let myPin = MyPin(withTitle: donePickingPokemon.capitalized, andLocationName: title, andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
-                            self.mapView.addAnnotation(myPin)
-                        }else{
-                            let myPin = MyPin(withTitle: donePickingPokemon.capitalized, andLocationName: "unknowLocation", andCoordinate: pressLocation, andAnnotationImage: UIImage(named: donePickingPokemon)!)
-                            self.mapView.addAnnotation(myPin)
-                        }
-                    }
-                    
-                }
+                //Create your custom pin here
             })
             
         }
@@ -130,29 +95,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     //Changes map style
     @IBAction func selectMap(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            self.mapView.mapType = .standard
-        case 1:
-            self.mapView.mapType = .satellite
-        case 2:
-            self.mapView.mapType = .hybrid
-        default:
-            return
-        }
+        //Use this to change mapStyle
     }
     
     //Zoom to user location
     @IBAction func zoomMyLocation(_ sender: AnyObject) {
-        if let myLocation = self.myLocation{
-            let coordinateRegion = MKCoordinateRegionMakeWithDistance(myLocation, 300, 300)
-            mapView.setRegion(coordinateRegion, animated: true)
-        }
+        //Zoom to user location here
     }
     
     //Updating user location on the mapView
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.myLocation = locations.first?.coordinate
+        //Do something if you want
     }
     
     //Needs to be here
@@ -160,10 +113,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         print("ERRO: --- \(error)")
     }
     
-    //Center user on screen
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 300, 300)
-        mapView.setRegion(coordinateRegion, animated: true)
+        //Maybe you will want to use this
     }
     
     //TODO
@@ -172,19 +123,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     }
     
     //adding custom Annotation
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if let customAnnotation = annotation as? MyPin{
-            /*let placemark = MKPlacemark(coordinate: annotation.coordinate, addressDictionary: nil)
-            let mapItem = MKMapItem(placemark: placemark)
-            
-            self.mapItem = (mapItem, customAnnotation)
-            self.showRoute.isEnabled = true*/
-            
-            return customAnnotation.annotationView!
-        }else{
-            return nil
-        }
-    }
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        if let customAnnotation = annotation as? MyPin{
+//            /*let placemark = MKPlacemark(coordinate: annotation.coordinate, addressDictionary: nil)
+//            let mapItem = MKMapItem(placemark: placemark)
+//            
+//            self.mapItem = (mapItem, customAnnotation)
+//            self.showRoute.isEnabled = true*/
+//            
+//            return customAnnotation.annotationView!
+//        }else{
+//            return nil
+//        }
+//    }
     
     func buttonAction() {
         self.performSegue(withIdentifier: "showRoute", sender: nil)
