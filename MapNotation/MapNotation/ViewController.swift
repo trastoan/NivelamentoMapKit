@@ -171,6 +171,28 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
 //        print(self.mapView.centerCoordinate)
     }
     
+    
+    //Other way
+    
+//    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+//        if let annotation = annotation as? Artwork {
+//            let identifier = "pin"
+//            var view: MKPinAnnotationView
+//            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+//                as? MKPinAnnotationView { // 2
+//                dequeuedView.annotation = annotation
+//                view = dequeuedView
+//            } else {
+//                // 3
+//                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//                view.canShowCallout = true
+//                view.calloutOffset = CGPoint(x: -5, y: 5)
+//                view.rightCalloutAccessoryView = UIButton.buttonWithType(.DetailDisclosure) as! UIView
+//            }
+//            return view
+//        }
+//        return nil
+//    }
     //adding custom Annotation
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let customAnnotation = annotation as? MyPin{

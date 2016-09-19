@@ -30,7 +30,10 @@ class MyPin: NSObject, MKAnnotation {
         view.image = self.annotationImage
         view.isEnabled = true
         view.canShowCallout = true
-        view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        button.setImage(UIImage(named: "compass"), for: .normal)
+        view.rightCalloutAccessoryView = button
         
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         imageView.image = self.pokemonImage
